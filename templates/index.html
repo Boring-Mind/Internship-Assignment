@@ -1,0 +1,29 @@
+{% load static crispy_forms_tags %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email Form | Internship assignment</title>
+    <link rel="stylesheet" type="text/css" href="{% static "css/main.css" %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha512-MoRNloxbStBcD8z3M/2BmnT+rg4IsMxPkXaGh2zD6LGNNFE80W3onsAhRcMAMrSoyWL9xD7Ert0men7vR8LUZg==" crossorigin="anonymous" />
+</head>
+<body>
+    <div class="main-wrapper row">
+        <div class="col-6 m-auto">
+            <div class="container my-5">
+                <h1 class="display-5 text-center">Send an email to all your employees!</h1>
+                <form method="post" action="{% url 'index' %}">
+                    {% csrf_token %}
+                    {{ form.subject|as_crispy_field }}
+                    {{ form.message|as_crispy_field }}
+                    {{ form.sender|as_crispy_field }}
+                    <div class="text-center">
+                        <input type="submit" value="Send email" class="btn btn-primary my-2 px-4"></button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
