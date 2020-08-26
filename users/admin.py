@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import datetime as dt
 
 import pytz
 from django.contrib import admin
@@ -33,6 +33,18 @@ class UserAdmin(admin.ModelAdmin):
         'date_joined',
     )
     change_list_template = "admin_user_actions.html"
+
+    def get_new_users_count(self) -> int:
+        return User.objects.filter(
+            date_joined__gt=dt.now(pytz.utc).date()
+        ).count()
+
+    def changelist_view(self, request, extra_context=None):
+        extra_context = extra_context or {}
+        extra_context['registered_last_day'] = self.get_new_users_count()
+        return super(UserAdmin, self).changelist_view(
+            request, extra_context=extra_context
+        )
 
     def get_urls(self):
         urls = super().get_urls()

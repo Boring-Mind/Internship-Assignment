@@ -2,6 +2,7 @@
 
 {% block object-tools %}
     <div>
+        <p>Number of users registered today:  {{registered_last_day}}</p>
         <form action="activate_users/" method="POST">
             {% csrf_token %}
                 <button type="submit" class="button">Activate all users</button>
