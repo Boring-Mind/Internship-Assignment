@@ -17,7 +17,6 @@
                     {% csrf_token %}
                     {{ form.subject|as_crispy_field }}
                     {{ form.message|as_crispy_field }}
-                    {{ form.sender|as_crispy_field }}
                     <div class="text-center">
                         <input type="submit" value="Send email" class="btn btn-primary my-2 px-4"></button>
                     </div>
