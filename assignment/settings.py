@@ -143,3 +143,10 @@ STATIC_URL = '/static/'
 # Crispy forms settings
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+# Security settings
+
+CSRF_COOKIE_SECURE = True
+SESSION_COOKIE_SECURE = True
+
+TEMPLATE_DEBUG = DEBUG
