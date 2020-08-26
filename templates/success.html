@@ -1,0 +1,26 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Success | Internship assignment</title>
+    <link rel="stylesheet" type="text/css" href="{% static "css/main.css" %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha512-MoRNloxbStBcD8z3M/2BmnT+rg4IsMxPkXaGh2zD6LGNNFE80W3onsAhRcMAMrSoyWL9xD7Ert0men7vR8LUZg==" crossorigin="anonymous" />
+</head>
+<body>
+    <div class="main-wrapper row">
+        <div class="col-12 jumbotron text-center my-auto">
+          <h1 class="display-3">Email sent!</h1>
+          <p class="lead">Your employees will receive your message as fast as possible!</p>
+          <hr>
+          <p>
+            Having trouble? <a href="">Contact us</a>
+          </p>
+          <p class="lead">
+            <a class="btn btn-primary" href="{% url 'index' %}" role="button">Continue to homepage</a>
+          </p>
+        </div>
+    </div>
+</body>
+</html>
