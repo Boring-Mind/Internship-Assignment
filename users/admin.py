@@ -1,18 +1,8 @@
 from django.contrib import admin
+from django.http import HttpResponseRedirect
+from django.urls import path
 
 from .models import User
-
-
-def deactivate_users(modeladmin, request, queryset):
-    queryset.update(is_active=False)
-
-
-def activate_users(modeladmin, request, queryset):
-    queryset.update(is_active=True)
-
-
-deactivate_users.short_description = "Deactivate users"
-activate_users.short_description = "Activate users"
 
 
 @admin.register(User)
@@ -34,4 +24,24 @@ class UserAdmin(admin.ModelAdmin):
     ordering = (
         'username', 'first_name', 'last_name', 'last_login', 'date_joined'
     )
-    actions = [deactivate_users, activate_users]
+    change_list_template = "admin_user_actions.html"
+
+    def get_urls(self):
+        urls = super().get_urls()
+        my_urls = [
+            path('activate_users/', self.activate_users),
+            path('deactivate_users/', self.deactivate_users),
+        ]
+        return my_urls + urls
+
+    def activate_users(self, request):
+        self_id = request.user.id
+        self.model.objects.exclude(id=self_id).update(is_active=True)
+        self.message_user(request, "All users are activated")
+        return HttpResponseRedirect("../")
+
+    def deactivate_users(self, request):
+        self_id = request.user.id
+        self.model.objects.exclude(id=self_id).update(is_active=False)
+        self.message_user(request, "All users are deactivated")
+        return HttpResponseRedirect("../")

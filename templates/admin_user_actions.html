@@ -1,0 +1,16 @@
+{% extends 'admin/change_list.html' %}
+
+{% block object-tools %}
+    <div>
+        <form action="activate_users/" method="POST">
+            {% csrf_token %}
+                <button type="submit" class="button">Activate all users</button>
+        </form>
+        <form action="deactivate_users/" method="POST">
+            {% csrf_token %}
+                <button type="submit" class="button">Deactivate all users</button>
+        </form>
+    </div>
+    <br />
+    {{ block.super }}
+{% endblock %}
