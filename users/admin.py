@@ -1,3 +1,6 @@
+from datetime import datetime
+
+import pytz
 from django.contrib import admin
 from django.http import HttpResponseRedirect
 from django.urls import path
@@ -15,6 +18,7 @@ class UserAdmin(admin.ModelAdmin):
         'is_staff',
         'is_active',
         'last_login',
+        'since_last_login',
         'date_joined',
     )
     search_fields = ('username', 'email', 'first_name', 'last_name')
@@ -22,7 +26,11 @@ class UserAdmin(admin.ModelAdmin):
         'is_staff', 'is_active', 'last_login', 'date_joined'
     )
     ordering = (
-        'username', 'first_name', 'last_name', 'last_login', 'date_joined'
+        'username',
+        'first_name',
+        'last_name',
+        'last_login',
+        'date_joined',
     )
     change_list_template = "admin_user_actions.html"
 
